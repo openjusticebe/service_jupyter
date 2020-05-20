@@ -9,10 +9,9 @@ RUN apt-get update &&  apt-get install -yq \
     gcc \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-RUN git clone https://github.com/betagouv/andi-data/ /jupyter
 COPY ./* /jupyter/
 WORKDIR /jupyter
 RUN pipenv install --system --deploy
-COPY ./start.sh /jupyter/start.sh
+RUN ls
 
 ENTRYPOINT [ "/jupyter/start.sh", "$PW"]
